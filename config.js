@@ -11,7 +11,7 @@ const CONFIG = {
   // URL de tu Google Apps Script (ver README.md, paso 4).
   // Si la dejas vacía, el sitio funciona en MODO DEMO (solo en tu navegador,
   // no guarda nada en el Excel y no bloquea números entre personas).
-  API_URL: "https://script.google.com/macros/s/AKfycbz0_matQxXFS7qrNegu-_8ic9vSZ6hzGbEcm2g_tNdrXhfdkGOKrw69SXI8uquzKhkQQQ/exec",
+  API_URL: "https://script.google.com/macros/s/AKfycbx-OugbR18vLJfBYsVbTCfHnr13IPceUN2guC2QhvEgtAsQYAACHlaiPEqSzY1AeSs1TA/exec",
 
   // ----------------------------------------------------------
   // CATEGORÍAS
