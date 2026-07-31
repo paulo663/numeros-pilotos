@@ -14,7 +14,8 @@ var ENCABEZADOS = [
   "N\u00FAmero",                 // Numero
   "Piloto",
   "Escuder\u00EDa",              // Escuderia
-  "Grupo"
+  "Grupo",
+  "Correo"
 ];
 
 function getHoja() {
@@ -25,6 +26,14 @@ function getHoja() {
     hoja.appendRow(ENCABEZADOS);
     hoja.getRange(1, 1, 1, ENCABEZADOS.length).setFontWeight("bold");
     hoja.setFrozenRows(1);
+    return hoja;
+  }
+  // Si la hoja ya existia con menos columnas (por ejemplo antes de agregar
+  // el correo), completa la fila de titulos sin tocar los datos.
+  if (hoja.getLastColumn() < ENCABEZADOS.length) {
+    hoja.getRange(1, 1, 1, ENCABEZADOS.length)
+        .setValues([ENCABEZADOS])
+        .setFontWeight("bold");
   }
   return hoja;
 }
@@ -88,10 +97,11 @@ function doPost(e) {
     var categoria = String(body.categoria || "").trim();
     var numero = String(body.numero || "").trim();
     var piloto = String(body.piloto || "").trim();
+    var correo = String(body.correo || "").trim();
     var equipo = String(body.equipo || "").trim();
     var grupo = String(body.grupo || "").trim() || categoria;
 
-    if (!categoria || !numero || !piloto) {
+    if (!categoria || !numero || !piloto || !correo) {
       return json({ ok: false, error: "Faltan datos." });
     }
 
@@ -108,7 +118,7 @@ function doPost(e) {
       }
     }
 
-    getHoja().appendRow([new Date(), categoria, Number(numero), piloto, equipo, grupo]);
+    getHoja().appendRow([new Date(), categoria, Number(numero), piloto, equipo, grupo, correo]);
     return json({ ok: true });
 
   } catch (err) {

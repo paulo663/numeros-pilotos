@@ -60,7 +60,7 @@ async function cargarTomados() {
   tomados = data.tomados || {};
 }
 
-async function reservar(categoria, numero, piloto, equipo) {
+async function reservar(categoria, numero, piloto, correo, equipo) {
   if (DEMO) {
     const cat = CONFIG.categorias.find((c) => c.nombre === categoria);
     if (quienTiene(cat, numero, ocupadosPrevios(cat))) {
@@ -76,7 +76,7 @@ async function reservar(categoria, numero, piloto, equipo) {
     method: "POST",
     // text/plain evita el preflight CORS que Apps Script no responde
     headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify({ categoria, numero, piloto, equipo, grupo: poolDe(cat) }),
+    body: JSON.stringify({ categoria, numero, piloto, correo, equipo, grupo: poolDe(cat) }),
   });
   return res.json();
 }
@@ -129,6 +129,7 @@ function abrirModal(categoria, numero) {
   $("modal-cat").textContent = categoria;
   $("modal-num").textContent = "#" + numero;
   $("piloto").value = "";
+  $("correo").value = "";
   $("equipo").value = "";
   $("error").classList.add("hidden");
   $("modal").classList.remove("hidden");
@@ -147,8 +148,9 @@ $("ok-cerrar").onclick = () => $("ok").classList.add("hidden");
 $("form").onsubmit = async (e) => {
   e.preventDefault();
   const piloto = $("piloto").value.trim();
+  const correo = $("correo").value.trim();
   const equipo = $("equipo").value.trim();
-  if (!piloto) return;
+  if (!piloto || !correo) return;
 
   const btn = $("enviar");
   btn.disabled = true;
@@ -156,7 +158,7 @@ $("form").onsubmit = async (e) => {
   $("error").classList.add("hidden");
 
   try {
-    const r = await reservar(seleccion.categoria, seleccion.numero, piloto, equipo);
+    const r = await reservar(seleccion.categoria, seleccion.numero, piloto, correo, equipo);
     if (!r.ok) throw new Error(r.error || "No se pudo guardar.");
 
     const num = seleccion.numero;
