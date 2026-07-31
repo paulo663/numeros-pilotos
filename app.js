@@ -29,16 +29,22 @@ function hermanas(cat) {
   return CONFIG.categorias.filter((c) => poolDe(c) === p);
 }
 
-// Números ya usados de antes (los del Excel), sumando todo el pool
+// Números ya usados de antes (los del Excel), sumando todo el pool.
+// Devuelve { numero: "piloto" }. Acepta también el formato viejo de lista.
 function ocupadosPrevios(cat) {
-  const set = new Set();
-  hermanas(cat).forEach((c) => (c.ocupados || []).forEach((n) => set.add(n)));
-  return set;
+  const out = {};
+  hermanas(cat).forEach((c) => {
+    const o = c.ocupados;
+    if (!o) return;
+    if (Array.isArray(o)) o.forEach((n) => (out[n] = "Ocupado"));
+    else Object.keys(o).forEach((n) => (out[n] = o[n] || "Ocupado"));
+  });
+  return out;
 }
 
-// Quién tiene el número: nombre del piloto, "Ocupado", o null si está libre
+// Quién tiene el número: nombre del piloto, o null si está libre
 function quienTiene(cat, numero, previos) {
-  if (previos.has(numero)) return "Ocupado";
+  if (previos[numero]) return previos[numero];
   const h = hermanas(cat);
   for (let i = 0; i < h.length; i++) {
     const t = tomados[h[i].nombre];
