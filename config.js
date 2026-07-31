@@ -8,7 +8,7 @@ const CONFIG = {
   titulo: "Números de Kart 2026 ACEK",
   subtitulo: "Escoge tu número disponible",
 
-  // Pega aquí la URL de tu Google Apps Script (ver README.md, paso 4).
+  // URL de tu Google Apps Script (ver README.md, paso 4).
   // Si la dejas vacía, el sitio funciona en MODO DEMO (solo en tu navegador,
   // no guarda nada en el Excel y no bloquea números entre personas).
   API_URL: "https://script.google.com/macros/s/AKfycbz0_matQxXFS7qrNegu-_8ic9vSZ6hzGbEcm2g_tNdrXhfdkGOKrw69SXI8uquzKhkQQQ/exec",
@@ -21,8 +21,8 @@ const CONFIG = {
   //                 si alguien toma el 907 en Tillotson Junior, también
   //                 queda ocupado en Tillotson Senior y Heavy.
   //  desde/hasta -> rango de números de la categoría
-  //  ocupados    -> números YA usados (pestaña "2026 invierno" del Excel).
-  //                 Para liberar uno, bórralo de esta lista.
+  //  ocupados    -> números YA usados. Para LIBERAR uno, bórralo de esta
+  //                 lista. Para ocupar uno a mano, agrégalo.
   // ----------------------------------------------------------
   categorias: [
     {
@@ -38,7 +38,7 @@ const CONFIG = {
       pool: "100",
       desde: 100, hasta: 199,
       ocupados: [
-        127, 185, 188, 197
+        // ninguno todavia
       ],
     },
     {
@@ -46,9 +46,9 @@ const CONFIG = {
       pool: "200",
       desde: 200, hasta: 299,
       ocupados: [
-        201, 202, 205, 206, 207, 209, 211, 212, 214, 216, 217, 221, 222, 225,
-        227, 235, 237, 241, 242, 244, 247, 252, 255, 263, 265, 274, 285, 292,
-        293
+        201, 202, 205, 206, 207, 209, 210, 211, 212, 214, 216, 217, 221, 222,
+        225, 227, 235, 237, 241, 242, 244, 247, 252, 255, 263, 265, 274, 285,
+        292, 293
       ],
     },
     {
@@ -95,8 +95,8 @@ const CONFIG = {
       pool: "700",
       desde: 700, hasta: 799,
       ocupados: [
-        700, 704, 706, 708, 710, 714, 715, 721, 722, 726, 737, 740, 781, 784,
-        788
+        700, 704, 706, 708, 710, 714, 715, 718, 721, 722, 726, 737, 740, 781,
+        784, 788
       ],
     },
     {
@@ -104,8 +104,8 @@ const CONFIG = {
       pool: "800",
       desde: 800, hasta: 899,
       ocupados: [
-        804, 806, 807, 808, 810, 812, 813, 814, 824, 825, 867, 884, 888, 898,
-        899
+        804, 805, 806, 807, 808, 810, 812, 813, 814, 824, 825, 846, 867, 884,
+        888, 898, 899
       ],
     },
     {
@@ -113,8 +113,8 @@ const CONFIG = {
       pool: "900",
       desde: 900, hasta: 999,
       ocupados: [
-        900, 902, 907, 911, 922, 924, 928, 933, 945, 947, 948, 956, 967, 972,
-        977, 984, 985, 991, 997, 998
+        900, 902, 907, 911, 924, 927, 928, 933, 941, 945, 947, 948, 956, 960,
+        967, 972, 977, 984, 991, 997, 998
       ],
     },
     {
@@ -122,8 +122,8 @@ const CONFIG = {
       pool: "900",
       desde: 900, hasta: 999,
       ocupados: [
-        904, 905, 906, 908, 915, 921, 923, 926, 927, 929, 931, 942, 944, 957,
-        959, 969, 971, 995, 999
+        904, 905, 906, 908, 915, 921, 923, 926, 929, 931, 942, 944, 957, 959,
+        969, 971, 995, 999
       ],
     },
     {
@@ -131,8 +131,8 @@ const CONFIG = {
       pool: "900",
       desde: 900, hasta: 999,
       ocupados: [
-        901, 904, 909, 912, 914, 916, 919, 920, 925, 929, 935, 939, 947, 950,
-        955, 970, 980, 987
+        901, 904, 909, 910, 912, 914, 916, 919, 920, 925, 929, 935, 936, 939,
+        940, 947, 950, 955, 970, 980, 987
       ],
     },
   ],
