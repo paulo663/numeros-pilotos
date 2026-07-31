@@ -34,14 +34,6 @@ const CONFIG = {
       ],
     },
     {
-      nombre: "Star of Tomorrow (8-12)",
-      pool: "100",
-      desde: 100, hasta: 199,
-      ocupados: [
-        // ninguno todavia
-      ],
-    },
-    {
       nombre: "VLR Junior (12-15)",
       pool: "200",
       desde: 200, hasta: 299,
